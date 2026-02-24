@@ -1,0 +1,17 @@
+# railway.toml — backend deployment config
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "uvicorn main:app --host 0.0.0.0 --port $PORT"
+restartPolicyType = "on_failure"
+
+[[services]]
+name = "returnradar-api"
+
+# Environment variables to set in Railway dashboard:
+# DATABASE_URL = postgresql+asyncpg://... (from Railway Postgres addon)
+# ANTHROPIC_API_KEY = sk-ant-...
+# SENDGRID_API_KEY = SG...
+# FROM_EMAIL = alerts@yourdomain.com
+# APP_URL = https://your-frontend.vercel.app
